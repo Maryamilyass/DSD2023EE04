@@ -39,10 +39,4 @@ The goal of this lab is to understand how basic Boolean algebra is implemented u
 
 ---
 
-### Instructions for Students
-1. Study the given RTL code and understand the Boolean expressions.
-2. Implement the logic on an FPGA using the provided constraint file.
-3. Refer to the lab manual for additional details and simulation results.
-4. Verify the outputs `x` and `y` for different input combinations and analyze the circuit behavior.
 
-Happy coding!
