@@ -35,7 +35,7 @@ Our lab repository contains the following files:
 - **Lab Manual (`.docx`)**: Includes detailed explanations, implementation steps, and expected results.
 
 ## Objective
-The goal of this lab is to understand how basic Boolean algebra is implemented using RTL and to test the designed circuit on an FPGA.
+The goal of this lab is to understand how basic Boolean algebra is implemented using RTL and to test the designed circuit on an FPGA.g
 
 ---
 
