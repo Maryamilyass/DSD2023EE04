@@ -63,6 +63,6 @@ The goal of this lab is to:
 - Simulate and validate the combinational circuit using Vivado.
 - Implement the design on an FPGA and analyze its functionality.
 
----
+
 
 
