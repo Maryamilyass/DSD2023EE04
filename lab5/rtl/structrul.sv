@@ -1,58 +1,53 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 02/26/2025 07:58:56 PM
-// Design Name: 
-// Module Name: rtl
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
-module lab5(
-
-    input logic [3:0] n,      
-    input logic [2:0] sel,      
-    output logic [7:0] segments,
-    output logic [7:0] anode
+module lab5_rtl(
+    input logic [2:0] sel,
+    input logic [3:0] num,
+    output logic A, B, C, D, E, F, G, DP,
+    output logic [7:0] AN
 );
 
-    assign segments[0] = (~n[0] & n[1] & ~n[2] & ~n[3]) | (~n[0] & ~n[1] & ~n[2] & n[3]) | (n[0] & n[1] & ~n[2] & n[3]) | (n[0] & ~n[1] & n[2] & n[3]);
+    // For Cathodes
+    assign A = (~num[3] & ~num[2] & ~num[1] & num[0]) | 
+               (~num[3] & num[2] & ~num[1] & ~num[0]) | 
+               (num[3] & num[2] & ~num[1] & num[0]) | 
+               (num[3] & ~num[2] & num[1] & num[0]);
 
-    assign segments[1] = (n[0] & n[2] & n[3]) | (n[1] & n[2] & ~n[3]) | (n[0] & n[1] & ~n[3]) | (~n[0] & n[1] & ~n[2] & n[3]);
+    assign B = (num[3] & num[2] & ~num[0]) | 
+               (~num[3] & num[2] & ~num[1] & num[0]) | 
+               (num[3] & num[1] & num[0]) | 
+               (num[2] & num[1] & ~num[0]);
 
-    assign segments[2] = (n[0] & n[1] & n[2]) | (n[0] & n[1] & ~n[3]) | (~n[0] & ~n[1] & n[2] & ~n[3]);
+    assign C = (num[3] & num[2] & ~num[0]) | 
+               (num[3] & num[2] & num[1]) | 
+               (~num[3] & ~num[2] & num[1] & ~num[0]);
 
-    assign segments[3] = (n[1] & n[2] & n[3]) | (~n[0] & n[1] & ~n[2] & ~n[3]) |  (~n[0] & ~n[1] & ~n[2] & n[3]) | (n[0] & ~n[1] & n[2] & ~n[3]);
+    assign D = (~num[3] & ~num[2] & ~num[1] & num[0]) | 
+               (~num[3] & num[2] & ~num[1] & ~num[0]) | 
+               (num[3] & ~num[2] & num[1] & ~num[0]) | 
+               (num[2] & num[1] & num[0]);
 
-    assign segments[4] = (~n[0] & n[3]) | (~n[0] & n[1] & ~n[2]) | (~n[1] & ~n[2] & n[3]);
+    assign E = (~num[3] & num[2] & ~num[1]) | 
+               (~num[3] & num[0]) | 
+               (~num[2] & ~num[1] & num[0]);
 
-    assign segments[5] = (~n[0] & ~n[1] & n[3]) | (~n[0] & n[2] & n[3]) | (~n[0] & ~n[1] & n[2]) | (n[0] & n[1] & ~n[2] & n[3]);
+    assign F = (~num[3] & ~num[2] & num[1]) | 
+               (~num[3] & num[1] & num[0]) | 
+               (num[3] & num[2] & ~num[1] & num[0]) | 
+               (~num[3] & ~num[2] & num[0]);
 
-    assign segments[6] = (~n[0] & ~n[1] & ~n[2]) | (n[0] & n[1] & ~n[2] & ~n[3]) | (~n[0] & n[1] & n[2] & n[3]);
+    assign G = (num[3] & num[2] & ~num[1] & ~num[0]) | 
+               (~num[3] & num[2] & num[1] & num[0]) | 
+               (~num[3] & ~num[2] & ~num[1]);
 
-    assign segments[7] = 0;
-    // Anode control logic 
-    assign anode[0] = (~sel[2]&sel[0] | sel[1] | sel[2]);
-    assign anode[1] = (~sel[2]&~sel[0] | sel[1] | sel[2]);
-    assign anode[2] = (~sel[2]&sel[0] | ~sel[1] | sel[2]);
-    assign anode[3] = (~sel[0]&~sel[2] | ~sel[1] | sel[2]);
-    assign anode[4] = (sel[0]&sel[2] | sel[1] | ~sel[2]);
-    assign anode[5] = (~sel[0] | sel[1] | sel[2] | ~sel[2]);
-    assign anode[6] = (sel[0]& sel[2] | ~sel[1] | ~sel[2]);
-    assign anode[7] = (~sel[0]&sel[1] | ~sel[1] | ~sel[2]);
+    assign DP = 0; 
+    
+    // For Anodes/Selecting the segments
+    assign AN[0] = ~((~sel[2]) & (~sel[1]) & (~sel[0]));
+    assign AN[1] = ~((~sel[2]) & (~sel[1]) & ( sel[0]));
+    assign AN[2] = ~((~sel[2]) & ( sel[1]) & (~sel[0]));
+    assign AN[3] = ~((~sel[2]) & ( sel[1]) & ( sel[0]));
+    assign AN[4] = ~(( sel[2]) & (~sel[1]) & (~sel[0]));
+    assign AN[5] = ~(( sel[2]) & (~sel[1]) & ( sel[0]));
+    assign AN[6] = ~(( sel[2]) & ( sel[1]) & (~sel[0]));
+    assign AN[7] = ~(( sel[2]) & ( sel[1]) & ( sel[0]));
 
 endmodule
-
-   
