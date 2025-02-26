@@ -1,4 +1,4 @@
-module lab5_seven_segment_behavioral(
+module lab5(
     input logic [2:0] sel,
     input logic [3:0] num,
     output logic A, B, C, D, E, F, G, DP,
